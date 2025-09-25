@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>소윤 ❤️ 남구 모바일 청첩장</title>
+  <meta property="og:title" content="소윤 ❤️ 남구 결혼합니다" />
+  <meta property="og:description" content="2026년 1월 31일(토) 오전 11시, 부평교회" />
+  <meta property="og:image" content="./images/og-cover.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="format-detection" content="telephone=no" />
+  <style>
+    :root{--bg:#fafaf9;--card:#fff;--ink:#0f172a;--muted:#475569;--brand:#2dd4bf;--line:#e5e7eb;--shadow:0 10px 24px rgba(15,23,42,.06),0 2px 6px rgba(15,23,42,.05);--radius:18px}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg)}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{max-width:920px;margin:0 auto;padding:16px}
+
+    /* HERO (원본 비율 유지) */
+    .hero{position:relative;overflow:hidden;border-radius:calc(var(--radius) + 6px);box-shadow:var(--shadow)}
+    .hero .cover{width:100%;height:auto;object-fit:contain;background:#f1f5f9}
+    .hero .overlay{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.35) 70%,rgba(0,0,0,.55) 100%)}
+    .hero .title{position:absolute;left:0;right:0;bottom:0;padding:28px 22px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.25)}
+    .title h1{margin:0 0 6px;font-weight:700;letter-spacing:.2px;font-size:clamp(22px,4.5vw,36px)}
+    .title p{margin:0;opacity:.95;font-size:clamp(14px,2.4vw,16px)}
+    .badge{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.92);color:#0f172a;padding:10px 14px;border-radius:999px;font-weight:600;font-size:14px;box-shadow:var(--shadow)}
+
+    /* COUNTDOWN */
+    .countdown{display:flex;justify-content:center;gap:10px;margin-top:12px}
+    .count{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;text-align:center;min-width:74px;box-shadow:var(--shadow)}
+    .count b{font-size:20px;display:block}
+    .count span{font-size:12px;color:var(--muted)}
+
+    /* 카드/그리드 */
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+    .grid{display:grid;gap:16px}
+    @media(min-width:860px){.grid-2{grid-template-columns:1fr 1fr}}
+    .section{margin:28px 0}
+    .section h2{margin:0 0 12px;font-size:22px}
+    .muted{color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:600}
+    .btn.brand{background:var(--brand);color:#fff;border:none}
+    .btn.ghost{background:#f8fafc}
+    .btn + .btn{margin-left:8px}
+    .list{display:grid;gap:8px;margin:12px 0 0}
+    .list .row{display:flex;align-items:center;gap:10px}
+    .list .key{min-width:84px;color:var(--muted)}
+
+    /* 인사말(가운데 정렬) */
+    .greeting{ text-align:center; }
+    .greeting p{ margin:0 0 10px; }
+
+    /* 지도 */
+    .map{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--line)}
+    .map::before{content:"";display:block;padding-top:66%}
+    .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    /* SLIDER (원본 비율 유지) */
+    .slider{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--line);min-height:220px}
+    .slides{display:flex;transition:transform .35s ease;will-change:transform}
+    .slide{min-width:100%;user-select:none;display:flex;align-items:center;justify-content:center;background:#f8fafc}
+    .slide img{width:auto;height:auto;max-width:100%;max-height:72vh;object-fit:contain;background:#f1f5f9}
+    .nav{position:absolute;inset:0;pointer-events:none}
+    .nav button{pointer-events:auto;position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.55);color:#fff;border:none;width:42px;height:42px;border-radius:999px;display:grid;place-items:center;cursor:pointer}
+    .nav .prev{left:10px}.nav .next{right:10px}
+    .dots{display:flex;justify-content:center;gap:8px;margin-top:10px}
+    .dots button{width:8px;height:8px;border-radius:999px;border:0;background:#cbd5e1;cursor:pointer}
+    .dots button.active{background:#0f172a}
+
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:40}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:94%;max-height:90vh;border-radius:12px;background:#111}
+
+    .tabs{display:flex;gap:8px;margin-bottom:12px}
+    .tab{padding:10px 14px;border-radius:999px;border:1px solid var(--line);cursor:pointer;font-weight:600}
+    .tab.active{background:var(--brand);color:#fff;border-color:transparent}
+    .acc{display:none}.acc.active{display:block}
+
+    .footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:24px 0}
+    .tiny{font-size:12px;color:var(--muted);text-align:center}
+    .top{position:fixed;right:14px;bottom:14px;width:46px;height:46px;border-radius:999px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800;box-shadow:var(--shadow);cursor:pointer}
+
+    /* 축하 연출 */
+    #confetti{position:fixed;inset:0;pointer-events:none;z-index:60;display:none}
+    .celebrate{position:fixed;inset:0;display:none;align-items:center;justify-content:center;text-align:center;z-index:70}
+    .celebrate .box{background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:24px;max-width:90%}
+    .celebrate h3{margin:0 0 8px;font-size:24px}
+    .celebrate p{margin:0 0 14px;color:var(--muted)}
+    .celebrate .btn{font-size:16px}
+
+    .err{padding:12px;border:1px solid #fecaca;border-radius:12px;background:#fff1f2;color:#b91c1c}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="hero">
+      <img class="cover" id="cover-img" src="./images/cover.jpg" alt="커버 이미지" />
+      <div class="overlay" aria-hidden="true"></div>
+      <div class="badge">모바일 청첩장</div>
+      <div class="title">
+        <h1>소윤 & 남구 결혼합니다</h1>
+        <p id="wedding-when">2026년 1월 31일(토) 오전 11시, 부평교회</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- 카운트다운 -->
+    <section class="countdown" aria-label="예식까지 남은 시간">
+      <div class="count"><b id="dd">0</b><span>일</span></div>
+      <div class="count"><b id="hh">0</b><span>시간</span></div>
+      <div class="count"><b id="mm">0</b><span>분</span></div>
+      <div class="count"><b id="ss">0</b><span>초</span></div>
+    </section>
+
+    <!-- 인사말 (가운데 정렬, 더보기 제거) -->
+    <section class="section card greeting">
+      <h2>인사말</h2>
+      <p class="muted">
+        함께 맞이하는 여섯 번째 겨울, 저희 두 사람이 믿음 안에서 하나 되어 작지만 뜻깊은 예식을 드리려 합니다.<br>
+        사랑과 믿음으로 같은 방향을 바라보며 서로를 더욱 사랑하고 섬기며 살아가겠습니다. <br>축복해 주시면 감사하겠습니다.
+      </p>
+      <p class="muted">
+        고마운 발걸음 덕분에 저희 결혼식이 더 따뜻해집니다. 바쁘시겠지만 편한 마음으로 축하해 주세요. 🙏
+      </p>
+    </section>
+
+    <!-- 예식 안내 / 오시는 길 -->
+    <section class="section grid grid-2">
+      <div class="card">
+        <h2>예식 안내</h2>
+        <div class="list">
+          <div class="row"><div class="key">일시</div><div id="info-date">2026.01.31(토) 11:00</div></div>
+          <div class="row"><div class="key">장소</div><div id="info-place">부평교회</div></div>
+          <div class="row"><div class="key">주소</div><div id="info-addr">인천 부평구 길주남로10번길 32</div></div>
+        </div>
+        <div style="margin-top:14px">
+          <button class="btn brand" id="btn-ics">캘린더에 추가</button>
+          <a class="btn" id="btn-navi" href="https://map.naver.com/v5/search/%EB%B6%80%ED%8F%89%EA%B5%90%ED%9A%8C" target="_blank" rel="noreferrer">네비 열기</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2>오시는 길</h2>
+        <div class="map">
+          <iframe id="map-frame" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=%EC%9D%B8%EC%B2%9C%20%EB%B6%80%ED%8F%89%EA%B5%AC%20%EA%B8%B8%EC%A3%BC%EB%82%A8%EB%A1%9C10%EB%B2%88%EA%B8%B8%2032&output=embed"></iframe>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:12px">
+          <a class="btn ghost" id="btn-map-naver" target="_blank" href="https://map.naver.com/v5/search/%EC%9D%B8%EC%B2%9C%20%EB%B6%80%ED%8F%89%EA%B5%AC%20%EA%B8%B8%EC%A3%BC%EB%82%A8%EB%A1%9C10%EB%B2%88%EA%B8%B8%2032">네이버지도</a>
+          <a class="btn ghost" id="btn-map-kakao" target="_blank" href="https://map.kakao.com/?q=%EC%9D%B8%EC%B2%9C%20%EB%B6%80%ED%8F%89%EA%B5%AC%20%EA%B8%B8%EC%A3%BC%EB%82%A8%EB%A1%9C10%EB%B2%88%EA%B8%B8%2032">카카오맵</a>
+          <a class="btn ghost" id="btn-map-google" target="_blank" href="https://maps.google.com/?q=%EC%9D%B8%EC%B2%9C%20%EB%B6%80%ED%8F%89%EA%B5%AC%20%EA%B8%B8%EC%A3%BC%EB%82%A8%EB%A1%9C10%EB%B2%88%EA%B8%B8%2032">구글지도</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 갤러리 -->
+    <section class="section card">
+      <h2>갤러리</h2>
+      <div class="slider" id="slider">
+        <div class="slides" id="slides"></div>
+        <div class="nav"><button class="prev" id="prev" aria-label="이전">‹</button><button class="next" id="next" aria-label="다음">›</button></div>
+      </div>
+      <div class="dots" id="dots"></div>
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true"><img alt="확대 이미지" /></div>
+    </section>
+
+    <!-- 참석/계좌/공유 -->
+    <section class="section card">
+      <h2>참석 여부</h2>
+      <p class="muted">참석 가능 여부를 알려주시면 좌석/식사 준비에 큰 도움이 됩니다.</p>
+      <a class="btn brand" target="_blank" href="https://forms.gle/your-form-id">RSVP 작성하기</a>
+    </section>
+
+    <section class="section card">
+      <h2>마음 전하실 곳</h2>
+      <div class="tabs">
+        <button class="tab active" data-tab="groom">신랑측</button>
+        <button class="tab" data-tab="bride">신부측</button>
+      </div>
+      <div id="groom" class="acc active">
+        <div class="list">
+          <div class="row"><div class="key">예금주</div><div>이남구</div></div>
+          <div class="row"><div class="key">은행</div><div>카카오뱅크</div></div>
+          <div class="row"><div class="key">계좌</div><div><code id="acc-groom">3333-20-0667933</code> <button class="btn" data-copy="acc-groom">복사</button></div></div>
+        </div>
+      </div>
+      <div id="bride" class="acc">
+        <div class="list">
+          <div class="row"><div class="key">예금주</div><div>전소윤</div></div>
+          <div class="row"><div class="key">은행</div><div>국민</div></div>
+          <div class="row"><div class="key">계좌</div><div><code id="acc-bride">123456-01-987654</code> <button class="btn" data-copy="acc-bride">복사</button></div></div>
+        </div>
+      </div>
+      <p class="tiny" style="margin-top:10px">축의금은 감사한 마음으로만 받겠습니다. 부담 갖지 마세요. 🙏</p>
+    </section>
+
+    <section class="section card">
+      <h2>공유하기 & 연락</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:8px">
+        <button class="btn" id="btn-share">링크 공유</button>
+        <button class="btn" id="btn-copy-link">링크 복사</button>
+        <a class="btn ghost" href="tel:010-1234-5678">신랑에게 전화</a>
+        <a class="btn ghost" href="tel:010-9876-5432">신부에게 전화</a>
+      </div>
+    </section>
+
+    <div class="footer tiny">
+      <div>© 2026 소윤 & 남구 | 모바일 청첩장</div>
+      <div style="margin-top:6px">링크가 열리지 않으면 크롬/사파리로 다시 시도해주세요.</div>
+    </div>
+
+    <canvas id="confetti"></canvas>
+    <div class="celebrate" id="celebrate">
+      <div class="box">
+        <h3>오늘은 소윤 ❤️ 남구의 결혼식 날!</h3>
+        <p>오전 11시, 부평교회에서 뵐게요. 축복해 주셔서 감사합니다 💐</p>
+        <button class="btn brand" id="celebrate-close">닫기</button>
+      </div>
+    </div>
+  </main>
+
+  <button class="top" id="btn-top" aria-label="맨 위로">↑</button>
+
+  <script>
+    /* ============== 갤러리 파일명 (15장) ==============
+       /images 폴더에 gallery-01 ~ gallery-15를 넣으세요.
+       확장자는 jpg/jpeg/png/webp 아무거나 가능 (자동 탐색). */
+    const GALLERY_BASENAMES = Array.from({length:15}, (_,i)=>`g-${String(i+1).padStart(2,'0')}`);
+    const COVER_SRC = './images/cover.jpg';
+
+    /* ========= 일정(파싱 없이 안전하게) ========= */
+    const when    = new Date(Date.UTC(2026, 0, 31, 2, 0, 0)); // 11:00 KST
+    const whenEnd = new Date(Date.UTC(2026, 0, 31, 4, 0, 0));
+    const WEDDING = {
+      title: '소윤 ❤️ 남구 결혼식',
+      place: '부평교회',
+      address: '인천 부평구 길주남로10번길 32',
+      link: location.href
+    };
+
+    // 텍스트 바인딩
+    (function initTexts(){
+      const kfmt = new Intl.DateTimeFormat('ko-KR', { dateStyle:'full', timeStyle:'short' });
+      document.getElementById('wedding-when').textContent = `${kfmt.format(when)}, ${WEDDING.place}`;
+      document.getElementById('info-date').textContent =
+        `${when.getFullYear()}.${String(when.getMonth()+1).padStart(2,'0')}.${String(when.getDate()).padStart(2,'0')}`+
+        `(${['일','월','화','수','목','금','토'][when.getDay()]}) ${String(when.getHours()).padStart(2,'0')}:${String(when.getMinutes()).padStart(2,'0')}`;
+      document.getElementById('info-place').textContent = WEDDING.place;
+      document.getElementById('info-addr').textContent  = WEDDING.address;
+
+      const addrEnc = encodeURIComponent(WEDDING.address);
+      const navi = document.getElementById('btn-navi'); if(navi) navi.href = `https://map.naver.com/v5/search/${addrEnc}`;
+      const btnN = document.getElementById('btn-map-naver'); if(btnN) btnN.href = `https://map.naver.com/v5/search/${addrEnc}`;
+      const btnK = document.getElementById('btn-map-kakao'); if(btnK) btnK.href = `https://map.kakao.com/?q=${addrEnc}`;
+      const btnG = document.getElementById('btn-map-google'); if(btnG) btnG.href = `https://maps.google.com/?q=${addrEnc}`;
+
+      document.getElementById('cover-img').src = COVER_SRC;
+    })();
+
+    // 확장자 자동 폴백 로더 (jpg → jpeg → png → webp)
+    const EXTS = ['jpg','jpeg','png','webp'];
+    function loadWithFallback(imgEl, basePath){
+      let k = 0;
+      function tryNext(){
+        if(k >= EXTS.length){
+          const warn = document.createElement('div');
+          warn.className='err';
+          warn.innerHTML = `이미지를 불러오지 못했습니다.<br><small>${basePath}.(jpg|jpeg|png|webp) 파일이 있는지 확인해주세요.</small>`;
+          imgEl.replaceWith(warn);
+          return;
+        }
+        imgEl.src = `${basePath}.${EXTS[k++]}`;
+      }
+      imgEl.onerror = tryNext;
+      tryNext();
+    }
+
+    // 갤러리 구성 (15장, 원본 비율 유지)
+    (function buildGallery(){
+      const slides = document.getElementById('slides');
+      const dots   = document.getElementById('dots');
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = lightbox.querySelector('img');
+
+      GALLERY_BASENAMES.forEach((base,i)=>{
+        const slide = document.createElement('div'); slide.className='slide';
+        const img = document.createElement('img'); img.loading='lazy'; img.alt=`갤러리 이미지 ${i+1}`;
+        loadWithFallback(img, `./images/${base}`);
+        img.addEventListener('click', ()=>{ if(img.src){ lbImg.src = img.src; lightbox.classList.add('open'); }});
+        slide.appendChild(img); slides.appendChild(slide);
+        const d = document.createElement('button'); d.addEventListener('click', ()=> go(i)); dots.appendChild(d);
+      });
+
+      let idx=0, N=GALLERY_BASENAMES.length;
+      function sync(){ slides.style.transform = `translateX(-${idx*100}%)`; [...dots.children].forEach((d,k)=> d.classList.toggle('active', k===idx)); }
+      function go(n){ if(N===0) return; idx=(n+N)%N; sync(); }
+      document.getElementById('prev').addEventListener('click', ()=> go(idx-1));
+      document.getElementById('next').addEventListener('click', ()=> go(idx+1));
+      let sx=0, dx=0; slides.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; });
+      slides.addEventListener('touchmove',  e=>{ dx=e.touches[0].clientX - sx; });
+      slides.addEventListener('touchend',   ()=>{ if(Math.abs(dx)>50){ go(idx + (dx<0?1:-1)); } sx=dx=0; });
+      lightbox.addEventListener('click', ()=> lightbox.classList.remove('open'));
+      if(N>0) sync(); else document.getElementById('slider').style.display='none';
+    })();
+
+    // 카운트다운 + 축하 연출
+    (function countdown(){
+      const dd=document.getElementById('dd'), hh=document.getElementById('hh'), mm=document.getElementById('mm'), ss=document.getElementById('ss');
+      let timer=null, fired=false;
+      function tick(){
+        const now = new Date();
+        let diff = Math.floor((when - now)/1000);
+        if(diff<=0){ diff=0; if(!fired){ fired=true; startCelebration(); } }
+        const d=Math.floor(diff/86400); diff-=d*86400;
+        const h=Math.floor(diff/3600);  diff-=h*3600;
+        const m=Math.floor(diff/60);    diff-=m*60;
+        const s=Math.floor(diff);
+        dd.textContent=d; hh.textContent=h; mm.textContent=m; ss.textContent=s;
+      }
+      timer=setInterval(tick,1000); tick();
+
+      function startCelebration(){
+        clearInterval(timer);
+        const pane=document.getElementById('celebrate'); pane.style.display='flex';
+        document.getElementById('celebrate-close').onclick=()=>{ pane.style.display='none'; };
+        confettiBurst();
+      }
+      function confettiBurst(){
+        const cv=document.getElementById('confetti'); const ctx=cv.getContext('2d');
+        let W=cv.width=innerWidth, H=cv.height=innerHeight; cv.style.display='block';
+        addEventListener('resize', ()=>{ W=cv.width=innerWidth; H=cv.height=innerHeight; });
+        const colors=['#F87171','#FBBF24','#34D399','#60A5FA','#A78BFA','#F472B6'];
+        const parts=Array.from({length:180},()=>({x:Math.random()*W,y:-20-Math.random()*H*.5,r:4+Math.random()*6,a:Math.random()*Math.PI*2,s:2+Math.random()*3,vy:2+Math.random()*2,c:colors[Math.floor(Math.random()*colors.length)],spin:(Math.random()*0.2)-0.1}));
+        let start=null, D=7000;
+        function step(ts){ if(!start) start=ts; const t=ts-start; ctx.clearRect(0,0,W,H);
+          parts.forEach(p=>{ p.x+=Math.cos(p.a)*p.s; p.y+=p.vy; p.a+=p.spin; p.vy+=0.02; ctx.globalAlpha=Math.max(0,1-t/D); ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); });
+          if(t<D) requestAnimationFrame(step); else { ctx.clearRect(0,0,W,H); cv.style.display='none'; }
+        }
+        requestAnimationFrame(step);
+      }
+    })();
+
+    // 공유/복사/탭/ICS
+    (function ui(){
+      const SHARE_FALLBACK_MSG='이 브라우저는 공유 기능을 지원하지 않습니다.\n\n▶ "링크 복사" 버튼을 사용해주세요.';
+      document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+        document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+        document.querySelectorAll('.acc').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active'); document.getElementById(t.dataset.tab).classList.add('active');
+      }));
+      document.querySelectorAll('[data-copy]').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          const id=btn.getAttribute('data-copy'); const txt=document.getElementById(id).textContent.trim();
+          navigator.clipboard.writeText(txt).then(()=>{ btn.textContent='복사됨'; setTimeout(()=>btn.textContent='복사',1500); });
+        });
+      });
+      const copyBtn=document.getElementById('btn-copy-link');
+      copyBtn.addEventListener('click',()=>{ navigator.clipboard.writeText(location.href).then(()=>{ copyBtn.textContent='복사됨'; setTimeout(()=>copyBtn.textContent='링크 복사',1200); }); });
+      document.getElementById('btn-share').addEventListener('click',async()=>{
+        const share={title:WEDDING.title,text:'초대합니다 💐',url:location.href}; if(navigator.share){ try{ await navigator.share(share);}catch(e){} } else { alert(SHARE_FALLBACK_MSG); }
+      });
+      document.getElementById('btn-top').addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+
+      function toICSDate(d){ return new Date(d).toISOString().replace(/[-:]/g,'').split('.')[0]+'Z'; }
+      function buildICS(){
+        return [
+          'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Mobile Invitation//KR','BEGIN:VEVENT',
+          `UID:${Date.now()}@mobile-invite`,
+          `DTSTAMP:${toICSDate(Date.now())}`,
+          `DTSTART:${toICSDate(when)}`,
+          `DTEND:${toICSDate(whenEnd)}`,
+          `SUMMARY:${'소윤 ❤️ 남구 결혼식'}`,
+          `LOCATION:${'부평교회'} ${'인천 부평구 길주남로10번길 32'}`,
+          `DESCRIPTION:모바일 청첩장: ${location.href}`,
+          'END:VEVENT','END:VCALENDAR'
+        ].join('\r\n');
+      }
+      document.getElementById('btn-ics').addEventListener('click',()=>{
+        const ics=buildICS(); const blob=new Blob([ics],{type:'text/calendar'}); const url=URL.createObjectURL(blob);
+        const a=document.createElement('a'); a.href=url; a.download='wedding.ics'; a.click(); URL.revokeObjectURL(url);
+      });
+    })();
+  </script>
+</body>
+</html>
