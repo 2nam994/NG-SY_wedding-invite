@@ -93,15 +93,15 @@
     .btn-naver:active{ transform:translateY(1px); }
     .btn-naver img{ width:20px; height:20px; display:block; }
 
-    /* ✅ 예식 안내 전용 축소 스타일 */
-    .info { font-size:12px; line-height:1.6; }       /* 본문 축소 */
-    .info h2 { font-size:22px; }                     /* 제목 소폭 축소 */
-    .info .key { font-size:12px; color:var(--muted);}/* 라벨 더 작게 */
-    .info .muted { font-size:12px; }                 /* 안내문도 축소 */
-    @media (min-width: 860px){
-      .info { font-size:15px; }                      /* PC에서 살짝 키움 */
+    .info .list .row{display:flex;align-items:center;gap:10px}
+    .info .list .key{flex:0 0 68px;min-width:68px}
+    .info .list .row > div:last-child{
+      flex:1 1 auto;min-width:0;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     }
-
+    @media (max-width:360px){
+      .info .list .key{flex-basis:62px;min-width:62px}
+    }
   </style>
 </head>
 <body>
