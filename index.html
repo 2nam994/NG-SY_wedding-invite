@@ -92,6 +92,16 @@
     .btn-naver:hover{ filter:brightness(0.95); }
     .btn-naver:active{ transform:translateY(1px); }
     .btn-naver img{ width:20px; height:20px; display:block; }
+
+    /* ✅ 예식 안내 전용 축소 스타일 */
+    .info { font-size:14px; line-height:1.6; }       /* 본문 축소 */
+    .info h2 { font-size:18px; }                     /* 제목 소폭 축소 */
+    .info .key { font-size:13px; color:var(--muted);}/* 라벨 더 작게 */
+    .info .muted { font-size:13px; }                 /* 안내문도 축소 */
+    @media (min-width: 860px){
+      .info { font-size:15px; }                      /* PC에서 살짝 키움 */
+    }
+
   </style>
 </head>
 <body>
@@ -134,9 +144,10 @@
       </p>
     </section>
 
-    <!-- 예식 안내 / 오시는 길 -->
-    <section class="section card greeting">
-      <div class="card">
+     <!-- 예식 안내 / 오시는 길 -->
+     <section class="section card greeting">
+      <!-- ✅ info 클래스 추가 (글자 크기 축소 적용) -->
+      <div class="card info">
         <h2>예식 안내</h2>
         <div class="list">
           <div class="row"><div class="key">일시</div><div id="info-date">2026.01.31(토) 오후 2시</div></div>
